@@ -5,6 +5,8 @@ from sklearn.preprocessing import MinMaxScaler, LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, classification_report
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 data = pd.read_csv("data_csv.csv")
 
@@ -100,5 +102,14 @@ accuracy = accuracy_score(y_test, y_pred)
 print(f'Accuratezza: {accuracy:.2f}')
 
 # %%
+correlation_matrix = data.corr()
 
+# Set up the matplotlib figure
+plt.figure(figsize=(8, 6))
+
+# Create a heatmap
+sns.heatmap(correlation_matrix, annot=False, cmap='coolwarm', square=True, cbar_kws={"shrink": .8})
+
+# Set title
+plt.title('Correlation Heatmap')
 # %%
